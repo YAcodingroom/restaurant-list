@@ -29,7 +29,15 @@ app.get('/restaurant/:id', (req, res) => {
 })
 
 app.get('/search', (req, res) => {
-  res.send('Search result here')
+  const keyword = req.query.keyword
+  const matchedData = restaurants.filter((data) => {
+    const searchByCategory = data.category.includes(keyword)
+    const searchByName = data.name.includes(keyword)
+    const searchByEnName = data.name_en.toLowerCase().includes(keyword.toLowerCase())
+    
+    return searchByCategory + searchByName + searchByEnName
+  })
+  res.render('index', { restaurants: matchedData })
 })
 
 app.listen(port, () => {
