@@ -1,7 +1,13 @@
 import express from 'express'
+import { engine } from 'express-handlebars'
 
 const app = express()
 const port = 3000
+
+app.engine('.hbs', engine({extname: '.hbs'}));
+app.set('view engine', '.hbs');
+app.set('views', './views');
+
 
 app.use(express.static('public'))
 
@@ -10,7 +16,7 @@ app.get('/', (req, res) => {
 })
 
 app.get('/restaurants', (req, res) => {
-  res.send('Hello home page here')
+  res.render('index')
 })
 
 app.get('/restaurant/:id', (req, res) => {
