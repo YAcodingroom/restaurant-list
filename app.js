@@ -4,7 +4,20 @@ const app = express()
 const port = 3000
 
 app.get('/', (req, res) => {
-  res.send('Hello again')
+  res.redirect('/restaurants')
+})
+
+app.get('/restaurants', (req, res) => {
+  res.send('Hello home page here')
+})
+
+app.get('/restaurant/:id', (req, res) => {
+  const id = req.params.id
+  res.send(`The page id is ${id}`)
+})
+
+app.get('/search', (req, res) => {
+  res.send('Search result here')
 })
 
 app.listen(port, () => {
