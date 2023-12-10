@@ -1,8 +1,11 @@
 import express from 'express'
+import { createRequire } from 'module'
 import { engine } from 'express-handlebars'
 
 const app = express()
 const port = 3000
+const require = createRequire(import.meta.url)
+const restaurants = require('./public/json/restaurant.json').results
 
 app.engine('.hbs', engine({extname: '.hbs'}));
 app.set('view engine', '.hbs');
@@ -16,7 +19,7 @@ app.get('/', (req, res) => {
 })
 
 app.get('/restaurants', (req, res) => {
-  res.render('index')
+  res.render('index', { restaurants })
 })
 
 app.get('/restaurant/:id', (req, res) => {
