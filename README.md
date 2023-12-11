@@ -33,6 +33,18 @@ Users should be able to:
 
 ## Installation and execution
 
+- Clone the project
+
+```Shell
+git clone https://github.com/YAcodingroom/restaurant-list.git
+```
+
+- Initialize NPM
+
+```Shell
+npm init -y
+```
+
 - Install express & express-handlebars
 
 ```Shell
