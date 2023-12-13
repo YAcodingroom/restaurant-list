@@ -31,11 +31,11 @@ app.get('/restaurant/:id', (req, res) => {
 app.get('/search', (req, res) => {
   const keyword = req.query.keyword
   const matchedData = restaurants.filter((data) => {
-    const searchByCategory = data.category.includes(keyword)
-    const searchByName = data.name.includes(keyword)
-    const searchByEnName = data.name_en.toLowerCase().includes(keyword.toLowerCase())
+    const categoryIsMatched = data.category.includes(keyword)
+    const nameIsMatched = data.name.includes(keyword)
+    const enNameIsMatched = data.name_en.toLowerCase().includes(keyword.toLowerCase())
     
-    return searchByCategory + searchByName + searchByEnName
+    return categoryIsMatched || nameIsMatched || enNameIsMatched
   })
   res.render('index', { restaurants: matchedData })
 })
